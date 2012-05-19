@@ -94,7 +94,7 @@ body{
 
 body section.content{
   margin: 0 auto;
-  width: 800px;
+  width: 80%;
 
 }
 
@@ -102,8 +102,33 @@ header, h1, h2, h3, h4, h5, h6{
   font-family: "Nokia Pure Headline";
 }
 
+h1{
+  font-size: 2.5em;
+}
+
+h2{
+  font-size: 2em;
+}
+
+section{
+  margin: 2em;
+}
+
+header{
+  margin: 0em 0em 1em 0em;
+}
+footer{
+  margin: 1em 0em 0em 0em;
+}
+
+header, footer{
+  background-color: #FF4444;
+  color: #FFEEEE;
+}
+
 nav{
   font-family: "Nokia Pure Headline";
+  margin: 1em 0;
 }
 
 nav a{
@@ -111,15 +136,34 @@ nav a{
   float: left;
   width: 33%;
   text-align: center;
+  font-size: 1.5em;
+  color: #FFDDDD;
 }
 
 #chromosomeGraph{
   overflow: scroll;
-  margin: 0 auto;
+  margin: 2em auto;
 }
 
 a{
   color: #FF3333;
   text-decoration:none;
   text-transform: uppercase;
+}
+
+section.content header h1{
+  size: 200%;
+}
+
+section.content footer{
+  position: fixed;
+  bottom: 0;
+  width: inherit;
+}
+
+section.content footer ul li{
+  display: block;
+  float: left;
+  width: 33%;
+  text-align: center;
 }
