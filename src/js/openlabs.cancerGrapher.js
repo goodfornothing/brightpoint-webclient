@@ -9,7 +9,8 @@
 		return this.each(function() {
       
 	        var defaults = {
-	            url: 'http://brightpoint.herokuapp.com/api/v1/subjects.json'
+	            url: 'http://brightpoint.herokuapp.com/api/v1/subjects.json',
+	            name: 'chart'
 	        }
 
 	        var plugin = this;
@@ -54,7 +55,7 @@
 			        topgutter = 30,
 			        contentWidth = width - leftgutter,
 			        contentHeight = height - topgutter - bottomgutter;
-			        r = Raphael("chart", width, height),
+			        r = Raphael(plugin.settings.name, width, height),
 			        txt = {"font": 'Nokia Pure Text, Arial', stroke: "none", fill: "#f22"},
 			        color = $("#chart").css("color"),
 			        deltaX = (maxX - minX) / 10,
