@@ -9,7 +9,7 @@ function ChromosomeSection(){
             {
                 "start":41750,
                 "end": 41800,
-                "y": 0.451080675717728
+                "y": 0.951080675717728
             },
             {
                  "start":41750,

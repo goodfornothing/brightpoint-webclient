@@ -28,7 +28,7 @@ $(function() {
         r.text(leftgutter + (x * (width - leftgutter) / 10), 794, Math.round(deltaX * x)).attr(txt);
     }
     for (var y = 20; y > 0; y-- ) {
-        r.text(25, bottomgutter + (y * (height - bottomgutter) / 20), roundNumber(maxY - (deltaY * y), 5)).attr(txt);
+        r.text(25, bottomgutter + (y * (height - bottomgutter) / 20), roundNumber(minY + (deltaY * y), 5)).attr(txt);
     }
     var centreY = (minY * -1) * (height / 2);
     $.each(chromosome.items, function(i, item){
