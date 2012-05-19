@@ -13,10 +13,11 @@ $(function() {
     });
     var yD = (maxY - minY) / yDepth;
     // Draw
-    var width = 1200,
-        height = 800,
-        leftgutter = 80,
+    var width = 1300,
+        height = 760,
+        leftgutter = 100,
         bottomgutter = 30,
+        topgutter = 30;
         r = Raphael("chart", width, height),
         txt = {"font": '10px Fontin-Sans, Arial', stroke: "none", fill: "#fff"},
         // X = (width - leftgutter) / chromosome.items.length,
@@ -24,20 +25,23 @@ $(function() {
         color = $("#chart").css("color"),
         deltaX = (maxX - minX) / 10,
         deltaY = (maxY - minY) / 20;
-    for (var x = 0; x < 10; x++) {
-        r.text(leftgutter + (x * (width - leftgutter) / 10), 794, Math.round(deltaX * x)).attr(txt);
+    console.log(maxY);
+    console.log(deltaY);
+    console.log(minY);
+    for (var y = 0; y <= 20; y++ ) {
+        r.text(25, topgutter + (y * (height - bottomgutter) / 21), roundNumber(((y * deltaY) - maxY), 4 ) ).attr(txt);
     }
-    for (var y = 20; y > 0; y-- ) {
-        r.text(25, bottomgutter + (y * (height - bottomgutter) / 20), roundNumber(minY + (deltaY * y), 5)).attr(txt);
-    }
-    var centreY = (minY * -1) * (height / 2);
-    $.each(chromosome.items, function(i, item){
-    	console.log(item);
-    	console.log('height: ' + height);
-    	var x = (item.start) / width;
-    	var y = centreY + (item.y * height / 2) ;
-    	r.circle(x, y, 2).attr({stroke: "none", fill: "#000", opacity: 1});;
-    });
+    // for (var x = 0; x < 10; x++) {
+    //     r.text(leftgutter + (x * (width - leftgutter) / 10), 794, Math.round(deltaX * x)).attr(txt);
+    // }
+    // var centreY = (minY * -1) * (height / 2);
+    // $.each(chromosome.items, function(i, item){
+    // 	console.log(item);
+    // 	console.log('height: ' + height);
+    // 	var x = (item.start) / width;
+    // 	var y = centreY + (item.y * height / 2) ;
+    // 	r.circle(x, y, 2).attr({stroke: "none", fill: "#000", opacity: 1});;
+    // });
     // var o = 0;
     // for (var i = 0, ii = axisy.length; i < ii; i++) {
     // 	console.log('i: '+ i);
