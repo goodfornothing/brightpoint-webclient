@@ -69,17 +69,57 @@ table {
   border-spacing: 0;
 }
 
+
+.clearfix:before, .clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+
 /* END reset min stuff */
 
 body{
-  background-color: #AAAAFF;
+  background-color: #FFEEEE;
+  font-family: "Nokia Pure Text";
 }
 
-#chromosomeGraph .graph{
-  background-color: #CCCCFF;
-  
+body section.content{
+  margin: 0 auto;
+  width: 800px;
+
 }
 
-#chromosomeGraph .point{
-  background-color: #FFCCCC;
+header, h1, h2, h3, h4, h5, h6{
+  font-family: "Nokia Pure Headline";
+}
+
+nav{
+  font-family: "Nokia Pure Headline";
+}
+
+nav a{
+  display: block;
+  float: left;
+  width: 33%;
+  text-align: center;
+}
+
+#chromosomeGraph{
+  overflow: scroll;
+  margin: 0 auto;
+}
+
+a{
+  color: #FF3333;
+  text-decoration:none;
+  text-transform: uppercase;
 }
