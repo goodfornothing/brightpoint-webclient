@@ -29,7 +29,13 @@ $(function() {
     console.log(deltaY);
     console.log(minY);
     for (var y = 0; y <= 20; y++ ) {
-        r.text(25, topgutter + (y * (height - bottomgutter) / 21), roundNumber(((y * deltaY) - maxY), 4 ) ).attr(txt);
+        r.text(25, topgutter + (y * (height - bottomgutter - topgutter) / 21), roundNumber(((y * deltaY) - maxY), 4 ) ).attr(txt);
+    }
+    console.log(maxX);
+    console.log(deltaX);
+    console.log(minX);
+    for (var x = 0; x <= 10; x++ ) {
+        r.text( leftgutter + (x * width / 11), 750, (x * deltaX) + minX).attr(txt);
     }
     // for (var x = 0; x < 10; x++) {
     //     r.text(leftgutter + (x * (width - leftgutter) / 10), 794, Math.round(deltaX * x)).attr(txt);
