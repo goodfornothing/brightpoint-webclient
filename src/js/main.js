@@ -23,18 +23,18 @@ $(function() {
         // Y = (height - bottomgutter) / yDepth,
         color = $("#chart").css("color"),
         deltaX = (maxX - minX) / 10,
-        deltaY = (maxY - minY) / 30;
+        deltaY = (maxY - minY) / 20;
     for (var x = 0; x < 10; x++) {
         r.text(leftgutter + (x * (width - leftgutter) / 10), 794, Math.round(deltaX * x)).attr(txt);
     }
-    for (var y = maxY; y > minY; y=y - deltaY ) {
-        r.text(25, bottomgutter + (((y * -1) - minY) * (height / 2)), roundNumber(y, 5)).attr(txt);
+    for (var y = 0; y < 20; y++ ) {
+        r.text(25, bottomgutter + (y * (height - bottomgutter) / 20), roundNumber(minY + (deltaY * y), 5)).attr(txt);
     }
     var centreY = (minY * -1) * (height / 2);
     $.each(chromosome.items, function(i, item){
     	console.log(item);
     	console.log('height: ' + height);
-    	var x = item.start / deltaX;
+    	var x = (item.start) / width;
     	var y = centreY + (item.y * height / 2) ;
     	r.circle(x, y, 2).attr({stroke: "none", fill: "#000", opacity: 1});;
     });
