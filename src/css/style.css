@@ -70,3 +70,11 @@ table {
 }
 
 /* END reset min stuff */
+
+#chromosomeGraph .data{
+  background-color: #CCCCFF;
+}
+
+#chromosomeGraph .point{
+  background-color: #FFCCCC;
+}
