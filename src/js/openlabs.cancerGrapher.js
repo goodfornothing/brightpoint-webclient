@@ -5,7 +5,7 @@
 
 ;(function($) {
 
-    $.cancerGrapher = function(el, options) {
+    $.fn.cancerGrapher = function(options) {
 		return this.each(function() {
       
 	        var defaults = {
