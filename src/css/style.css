@@ -71,8 +71,13 @@ table {
 
 /* END reset min stuff */
 
-#chromosomeGraph .data{
+body{
+  background-color: #AAAAFF;
+}
+
+#chromosomeGraph .graph{
   background-color: #CCCCFF;
+  
 }
 
 #chromosomeGraph .point{

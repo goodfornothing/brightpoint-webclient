@@ -2,32 +2,54 @@ $(function() {
 	
 
     var chromosomeSection = new ChromosomeSection(), chromosome = chromosomeSection.getData();
+    console.log(chromosome);
     var axisx = [],
-        axisy = [];
+        axisy = [],
+        maxY = 0, minY = 0, yDepth = 1000,
+        maxX = chromosome.section.x2, minX = chromosome.section.x1;
     $.each(chromosome.items, function(i, item){
-    	// console.log(item);
-		axisy.push(item.y);
-		axisx.push(item.start);
+		if(item.y > maxY) maxY = item.y;
+		if(item.y < minY) minY = item.y;
     });
-    console.log(axisx);
-    console.log(axisy);
+    var yD = (maxY - minY) / yDepth;
     // Draw
-    var width = 800,
-        height = 300,
-        leftgutter = 30,
-        bottomgutter = 20,
+    var width = 1200,
+        height = 800,
+        leftgutter = 80,
+        bottomgutter = 30,
         r = Raphael("chart", width, height),
         txt = {"font": '10px Fontin-Sans, Arial', stroke: "none", fill: "#fff"},
-        X = (width - leftgutter) / axisx.length,
-        Y = (height - bottomgutter) / axisy.length,
-        color = $("#chart").css("color");
-        max = Math.round(X / 2) - 1;
+        // X = (width - leftgutter) / chromosome.items.length,
+        // Y = (height - bottomgutter) / yDepth,
+        color = $("#chart").css("color"),
+        deltaX = (maxX - minX) / width,
+        deltaY = (maxY - minY) / 30;
 
-    for (var i = 0, ii = axisx.length; i < ii; i++) {
-        r.text(leftgutter + X * (i + .5), 294, axisx[i]).attr(txt);
+    console.log(deltaX);
+    console.log(minX);
+    console.log(maxX);
+    console.log(width);
+    for (var x = 0; x < 10; x++) {
+    	// console.log('x: ' + x);
+        r.text(leftgutter + (x * (width - leftgutter)/10), 794, Math.round(minX * (deltaX * x))).attr(txt);
     }
-    for (var i = 0, ii = axisy.length; i < ii; i++) {
-        r.text(10, Y * (i + .5), axisy[i]).attr(txt);
+    for (var y = maxY; y > minY; y=y - deltaY ) {
+    	console.log('y: ' + y);
+        r.text(25, bottomgutter + (((y * -1) - minY) * (height / 2)), roundNumber(y, 5)).attr(txt);
     }
+
+    // var o = 0;
+    // for (var i = 0, ii = axisy.length; i < ii; i++) {
+    // 	console.log('i: '+ i);
+    //     for (var j = 0, jj = axisx.length; j < jj; j++) {
+    // 		console.log('j: '+ j);
+    //         r.circle(20, 20);
+    //         o++;
+    //     }
+    // }
 });
 
+function roundNumber(num, dec) {
+	var result = Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+	return result;
+}
