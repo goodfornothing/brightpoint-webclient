@@ -22,22 +22,22 @@ $(function() {
         // X = (width - leftgutter) / chromosome.items.length,
         // Y = (height - bottomgutter) / yDepth,
         color = $("#chart").css("color"),
-        deltaX = (maxX - minX) / width,
+        deltaX = (maxX - minX) / 10,
         deltaY = (maxY - minY) / 30;
-
-    console.log(deltaX);
-    console.log(minX);
-    console.log(maxX);
-    console.log(width);
     for (var x = 0; x < 10; x++) {
-    	// console.log('x: ' + x);
-        r.text(leftgutter + (x * (width - leftgutter)/10), 794, Math.round(minX * (deltaX * x))).attr(txt);
+        r.text(leftgutter + (x * (width - leftgutter) / 10), 794, Math.round(deltaX * x)).attr(txt);
     }
     for (var y = maxY; y > minY; y=y - deltaY ) {
-    	console.log('y: ' + y);
         r.text(25, bottomgutter + (((y * -1) - minY) * (height / 2)), roundNumber(y, 5)).attr(txt);
     }
-
+    var centreY = (minY * -1) * (height / 2);
+    $.each(chromosome.items, function(i, item){
+    	console.log(item);
+    	console.log('height: ' + height);
+    	var x = item.start / deltaX;
+    	var y = centreY + (item.y * height / 2) ;
+    	r.circle(x, y, 2).attr({stroke: "none", fill: "#000", opacity: 1});;
+    });
     // var o = 0;
     // for (var i = 0, ii = axisy.length; i < ii; i++) {
     // 	console.log('i: '+ i);
