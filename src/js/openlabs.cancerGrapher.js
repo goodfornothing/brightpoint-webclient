@@ -64,7 +64,6 @@
 	        }
 
 	        var plotGraph = function(chromosome) {
-	        	console.log(chromosome);
 	        	subject_id = chromosome.id;
 				var axisx = [],
 			        axisy = [],
@@ -155,25 +154,13 @@
 	        var sumbitInterestEvent = function(selector, go){
 	        	return function(e){
 	        		var position = selector.position(), xEl = position.left, yEl = position.y;
-	        		// console.log(plugin.settings.leftgutter);
-	        		// console.log(plugin.settings.contentWidth);
-	        		// console.log(plugin.settings.minX);
-	        		// console.log(xEl);
-			    	// var x = plugin.settings.leftgutter +((pointX - minX) / (maxX - minX) * contentWidth);
-			    	// var x - plugin.settings.leftgutter = (pointX - minX) / (maxX - minX) * contentWidth;
-			    	// var (x - plugin.settings.leftgutter) / contentWidth = (pointX - minX) / (maxX - minX);
-			    	// var ((x - plugin.settings.leftgutter) / contentWidth) * (maxX - minX) = (pointX - minX);
-			    	// var (((x - plugin.settings.leftgutter) / contentWidth) * (maxX - minX)) + minX = pointX;
 			    	var pointX1 = (((xEl - plugin.settings.leftgutter) / plugin.settings.contentWidth) * (plugin.settings.maxX - plugin.settings.minX)) + plugin.settings.minX;
-			    	// var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
-			    	// console.log(pointX);
-			    	var pointX2 = 0;
+			    	var pointX2 = 12315425;
 	        		selector.hide();
 	        		annotations.push({
 	        			start: pointX1,
 	        			end: pointX2
-	        		})
-	        		
+	        		})	
 	        	}
 	        }
 
@@ -196,15 +183,19 @@
         			dataType: 'jsonp',
         			data: queryString,
         			success: function(responseData, textStatus, jqXHR){
-        				console.log('success');
 	        			$(plugin.settings.button).show();
+	        			reInit();
         			},
-        			error: function(responseData, textStatus, errorThrown){
-        				console.log('error');
+        			error: function(){
 	        			$(plugin.settings.button).show();
-
+	        			$(plugin).parent().append($('<div>error!!!!</div>'));
         			}
         		});
+	        }
+
+	        var reInit = function(){
+	        	$(plugin).find('svg').remove();
+	        	init();
 	        }
 
 	        var roundNumber = function (num, dec) {

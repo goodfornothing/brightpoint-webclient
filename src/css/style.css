@@ -105,6 +105,8 @@ body section.content{
 
 header, h1, h2, h3, h4, h5, h6{
   font-family: "Nokia Pure Headline";
+  color: #e13c74;
+  font-style: italic;
 }
 
 h1{
@@ -113,6 +115,9 @@ h1{
 
 h2{
   font-size: 2em;
+}
+h2{
+  font-size: 1.5em;
 }
 
 section{
@@ -139,7 +144,7 @@ nav{
 nav a{
   display: block;
   float: left;
-  width: 33%;
+  width: 25%;
   text-align: center;
   font-size: 1.5em;
   color: #444444;
@@ -244,6 +249,89 @@ footer h1{
   color: #DDD;
   width: 4em;
 }
+
+#dashboard{
+ background-color: #DDDDDD;
+  padding: 1em;
+  -webkit-border-radius:  0.5em;
+  -moz-border-radius:  0.5em;
+  border-radius:  0.5em;
+  height: 400px;
+}
+
+#dashboard header{
+  -webkit-border-radius:  0.5em;
+  -moz-border-radius:  0.5em;
+  border-radius:  0.5em;
+  
+}
+
+#dashboard .myGeneScore{
+  color: #a3d1e9;
+}
+
+#dashboard .teamGeneScore{
+  color: #c3b331;
+}
+
+#dashboard img.uk{
+  display: block;
+  float:left;
+}
+
+#dashboard ul.people{
+  height: 100%;
+  float: left;
+}
+
+#dashboard nav.profile{
+  position: absolute;
+  right: 010em;
+}
+
+
+#dashboard nav.profile ul li{
+  margin: 20px 0px 40px 0px;
+}
+
+#dashboard ul.people li{
+  margin: 20px 0px 20px 0px;
+  color: #333333;
+}
+
+#dashboard .login {
+  float: left;
+  width: 28%;
+}
+
+#dashboard .login ul li{
+  float: left;
+  font-size: 1em;
+
+}
+
+#dashboard .login ul li a{
+  font-size: 1em;
+  width: 80%;
+  -webkit-border-radius:  0.5em;
+  -moz-border-radius:  0.5em;
+  border-radius:  0.5em;
+  background-color: #AAAAFF;
+  padding: 1em;
+  margin: 1em;
+
+}
+
+#dashboard .youtube{
+  width: 70%;
+  float: left;
+}
+
+
+
+
+
+
 
 
 
