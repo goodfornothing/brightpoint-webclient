@@ -9,7 +9,8 @@
 		return this.each(function() {
       
 	        var defaults = {
-	            url: 'http://brightpoint.herokuapp.com/api/v1/subjects.json',
+	            dataUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/next.json',
+	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/classifications/new.json',
 	            name: 'chart',
 	            axis: true,
 	            topgutter: 30,
@@ -20,12 +21,16 @@
 	            width: 2100,
 	            spotColor: '#443333',
 	            xAxisPoints: 20,
-	            yAxisPoints: 20
+	            yAxisPoints: 20,
+	            button: '#submitAnnotations'
 	        }
 
 	        var plugin = this;
 
 	        plugin.settings = {}
+
+	        var subject_id, start_point, end_point;
+	        var annotations = [];
 
 	        var init = function() {
 
@@ -37,11 +42,11 @@
 
 	            var chromosomeSection = new SectionAdapter();
 			    $.ajax({
-			    	url: 'http://brightpoint.herokuapp.com/api/v1/subjects.json',
+			    	url: plugin.settings.dataUrl,
 			    	type: 'GET',
 			    	dataType: 'json',
 			    	success: function(data){
-			    		chromosomeSection.setData(data[0]);
+			    		chromosomeSection.setData(data);
 			    		plotGraph(chromosomeSection.getData());
 			    	},
 			    	error: function(){
@@ -49,24 +54,31 @@
 			    		plotGraph(chromosomeSection.getData());
 			    	}
 			    });
-
+			    $(plugin.settings.button).click(function(e){
+			    	e.preventDefault();
+			    	e.stopPropagation();
+			    	submitFinal();
+			    })
 	            // code goes here
 
 	        }
 
 	        var plotGraph = function(chromosome) {
-
+	        	console.log(chromosome);
+	        	subject_id = chromosome.id;
 				var axisx = [],
 			        axisy = [],
 			        maxY = 0, minY = 0,
 			        maxX = 0, minX = 9999999;
-			    $.each(chromosome.data_points, function(i, item){
+			    $.each(chromosome.metadata.data_points, function(i, item){
 					if(item.y > maxY) maxY = item.y;
 					if(item.y < minY) minY = item.y;
 					var x = (item.end + item.start) / 2;
-					if(x > maxX) maxX = x;
-					if(x < minX) minX = x;
+					if(x > maxX) maxX = item.end;
+					if(x < minX) minX = item.start;
 			    });
+	        	start_point = minX;
+	        	end_point = maxX; 
 			    // Draw
 			    var contentWidth = plugin.settings.width - plugin.settings.leftgutter - plugin.settings.rightgutter,
 			        contentHeight = plugin.settings.height - plugin.settings.topgutter - plugin.settings.bottomgutter;
@@ -82,7 +94,7 @@
 				        r.text( plugin.settings.leftgutter + (x * contentWidth / (plugin.settings.xAxisPoints + 1)), plugin.settings.height - 10, Math.round((x * deltaX) + minX)).attr(txt);
 				    }
 				}
-			    $.each(chromosome.data_points, function(i, item){
+			    $.each(chromosome.metadata.data_points, function(i, item){
 			    	var pointX = (item.end + item.start) / 2;
 			    	var x = plugin.settings.leftgutter +((pointX - minX) / (maxX - minX) * contentWidth);
 			    	var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
@@ -132,7 +144,8 @@
 	        		selector.append(go);
 	        		go.css({
 	        			top: '45%',
-	        			position: 'absolute'
+	        			left: '45%',
+	        			position: 'relative'
 	        		});
 	        		go.on('dblclick', sumbitInterestEvent(selector, go));
 	        		selection++;
@@ -142,20 +155,51 @@
 	        var sumbitInterestEvent = function(selector, go){
 	        	return function(e){
 	        		var position = selector.position(), xEl = position.left, yEl = position.y;
-	        		console.log(plugin.settings.leftgutter);
-	        		console.log(plugin.settings.contentWidth);
-	        		console.log(plugin.settings.minX);
-	        		console.log(xEl);
+	        		// console.log(plugin.settings.leftgutter);
+	        		// console.log(plugin.settings.contentWidth);
+	        		// console.log(plugin.settings.minX);
+	        		// console.log(xEl);
 			    	// var x = plugin.settings.leftgutter +((pointX - minX) / (maxX - minX) * contentWidth);
 			    	// var x - plugin.settings.leftgutter = (pointX - minX) / (maxX - minX) * contentWidth;
 			    	// var (x - plugin.settings.leftgutter) / contentWidth = (pointX - minX) / (maxX - minX);
 			    	// var ((x - plugin.settings.leftgutter) / contentWidth) * (maxX - minX) = (pointX - minX);
 			    	// var (((x - plugin.settings.leftgutter) / contentWidth) * (maxX - minX)) + minX = pointX;
-			    	var pointX = (((xEl - plugin.settings.leftgutter) / plugin.settings.contentWidth) * (plugin.settings.maxX - plugin.settings.minX)) + plugin.settings.minX;
+			    	var pointX1 = (((xEl - plugin.settings.leftgutter) / plugin.settings.contentWidth) * (plugin.settings.maxX - plugin.settings.minX)) + plugin.settings.minX;
 			    	// var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
-			    	console.log(pointX);
+			    	// console.log(pointX);
+			    	var pointX2 = 0;
 	        		selector.hide();
+	        		annotations.push({
+	        			start: pointX1,
+	        			end: pointX2
+	        		})
+	        		
 	        	}
+	        }
+
+	        var submitFinal = function(){
+	        	var data = {
+    				subject_id: subject_id,
+				    started: start_point,
+				    ended: end_point,
+				    annotations: annotations
+				};
+	        	console.log(data);
+				$.ajax({
+        			url: plugin.settings.sumbitUrl,
+        			dataType: 'json',
+    				crossDomain: true,
+    				contentType: "application/json; charset=utf-8",
+        			type: 'POST',
+        			data: JSON.stringify(data),
+        			success: function(responseData, textStatus, jqXHR){
+        				console.log('success');
+        			},
+        			error: function(responseData, textStatus, errorThrown){
+        				console.log('error');
+
+        			}
+        		});
 	        }
 
 	        var roundNumber = function (num, dec) {
