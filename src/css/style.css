@@ -141,18 +141,24 @@ nav a{
 }
 
 #chromosomeGraph{
-  overflow: scroll;
   margin: 2em auto;
 }
 
-#chart{
-  position: relative;
-}
 
 a{
   color: #FF3333;
   text-decoration:none;
   text-transform: uppercase;
+}
+
+
+section.content header{
+  -webkit-border-bottom-right-radius: 0.5em;
+  -webkit-border-bottom-left-radius: 0.5em;
+  -moz-border-radius-bottomright: 0.5em;
+  -moz-border-radius-bottomleft: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
 }
 
 section.content header h1{
@@ -163,6 +169,12 @@ section.content footer{
   position: fixed;
   bottom: 0;
   width: inherit;
+  -webkit-border-top-left-radius: 0.5em;
+-webkit-border-top-right-radius: 0.5em;
+-moz-border-radius-topleft: 0.5em;
+-moz-border-radius-topright: 0.5em;
+border-top-left-radius: 0.5em;
+border-top-right-radius: 0.5em;
 }
 
 section.content footer ul li{
@@ -191,8 +203,20 @@ div.selector{
   top: 0;
 }
 
+#chromosomeGraph article,
+#chart{
+  margin: 20px 0px 40px 0px;
+  padding: 0.5em;
+  -webkit-border-radius:  0.5em;
+  -moz-border-radius:  0.5em;
+  border-radius:  0.5em;
+  background-color: #CCAAAA;
+}
 
-
+#chart{
+  position: relative;
+  overflow: scroll;
+}
 
 
 

@@ -17,7 +17,8 @@
 	            bottomgutter: 30,
 	            leftgutter: 100,
 	            height: 360,
-	            width: 2100 
+	            width: 2100,
+	            spotColor: '#443333'
 	        }
 
 	        var plugin = this;
@@ -69,7 +70,6 @@
 			        contentHeight = plugin.settings.height - plugin.settings.topgutter - plugin.settings.bottomgutter;
 			        r = Raphael(plugin.settings.name, plugin.settings.width, plugin.settings.height),
 			        txt = {"font": 'Nokia Pure Text, Arial', stroke: "none", fill: "#f22"},
-			        color = $(plugin).css("color"),
 			        deltaX = (maxX - minX) / 10,
 			        deltaY = (maxY - minY) / 20;
 			    if(plugin.settings.axis){
@@ -84,7 +84,7 @@
 			    	var pointX = item.end + item.start / 2;
 			    	var x = plugin.settings.leftgutter +((pointX - minX) / (maxX - minX) * contentWidth);
 			    	var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
-			    	r.circle(x, y, 2).attr({stroke: "none", fill: "#000", opacity: 1});;
+			    	r.circle(x, y, 2).attr({stroke: "none", fill: plugin.settings.spotColor, opacity: 1});;
 			    });
 			    $(plugin).find('svg').click(graphEvent());
 
