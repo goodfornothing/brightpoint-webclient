@@ -63,7 +63,7 @@
 			    $.each(chromosome.data_points, function(i, item){
 					if(item.y > maxY) maxY = item.y;
 					if(item.y < minY) minY = item.y;
-					var x = item.end + item.start / 2;
+					var x = (item.end + item.start) / 2;
 					if(x > maxX) maxX = x;
 					if(x < minX) minX = x;
 			    });
@@ -83,7 +83,7 @@
 				    }
 				}
 			    $.each(chromosome.data_points, function(i, item){
-			    	var pointX = item.end + item.start / 2;
+			    	var pointX = (item.end + item.start) / 2;
 			    	var x = plugin.settings.leftgutter +((pointX - minX) / (maxX - minX) * contentWidth);
 			    	var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
 			    	r.circle(x, y, 2).attr({stroke: "none", fill: plugin.settings.spotColor, opacity: 1});;
