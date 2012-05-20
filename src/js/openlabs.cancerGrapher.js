@@ -74,7 +74,7 @@
 			        deltaY = (maxY - minY) / 20;
 			    if(plugin.settings.axis){
 				    for (var y = 0; y <= 20; y++ ) {
-				        r.text(25, plugin.settings.topgutter + (y * (contentHeight) / 21), roundNumber(((y * deltaY) - maxY), 4 ) ).attr(txt);
+				        r.text(25, plugin.settings.topgutter + (y * (contentHeight) / 21), roundNumber((((y * deltaY) - maxY) * -1), 4 ) ).attr(txt);
 				    }
 				    for (var x = 0; x <= 10; x++ ) {
 				        r.text( plugin.settings.leftgutter + (x * contentWidth / 11), plugin.settings.height - 10, Math.round((x * deltaX) + minX)).attr(txt);
