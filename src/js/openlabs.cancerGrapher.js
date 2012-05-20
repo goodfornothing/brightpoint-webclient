@@ -10,7 +10,7 @@
       
 	        var defaults = {
 	            dataUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/next.json',
-	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/1/classifications/new.json',
+	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/8/classifications/new.json',
 	            name: 'chart',
 	            axis: true,
 	            topgutter: 30,
@@ -181,7 +181,6 @@
 					queryString += 'annotations[]={start:'+annotation.start+', end:'+annotation.end+'}&';
 				});
 
-	        	console.log(queryString);
 				$.ajax({
         			url: plugin.settings.sumbitUrl,
     				crossDomain: true,
