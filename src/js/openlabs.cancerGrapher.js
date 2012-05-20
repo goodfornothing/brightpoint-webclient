@@ -90,14 +90,32 @@
 	        			'class': 'selector',
 	        			'id': 'selector' + selection
 	        		});
-	        		selector.resizable();
-	        		selector.draggable();
 	        		console.log(selector);
 	        		$(plugin).append(selector);
-	        		selection++;
+	        		selector.css({
+	        			'left': e.offsetX,
+	        			'top': e.offsetY
+	        		});
+	        		selector.resizable();
+	        		selector.draggable();
 	        		selector.on('dblclick', function(e){
 	        			selector.hide();
 	        		})
+	        		var go = $('<div>GO</div>', {
+	        			'class': 'sumbitInterest',
+	        			'id': 'sumbitInterest' + selection
+	        		});
+	        		selector.append(go);
+	        		go.css({
+	        			left: '45%',
+	        			top: '45%',
+	        			position: 'absolute'
+	        		})
+	        		go.on('click', function(e){
+	        			//TODO submit to server the interest
+	        			selector.hide();
+	        		})
+	        		selection++;
 	        	}
 	        }
 

@@ -145,6 +145,10 @@ nav a{
   margin: 2em auto;
 }
 
+#chart{
+  position: relative;
+}
+
 a{
   color: #FF3333;
   text-decoration:none;
@@ -174,15 +178,18 @@ aside.beta{
   top: 50%;
   width:3em;
   background-color: #FF4444;
+  padding: 1em;
 }
 
 div.selector{
-  height: 40px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   background-color: #663333;
   position: absolute;
   opacity: 0.5;
   border: 1px dashed #999;
+  left: 0;
+  top: 0;
 }
 
 
