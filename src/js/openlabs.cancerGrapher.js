@@ -140,6 +140,12 @@
 	        			'class': 'sumbitInterest',
 	        			'id': 'sumbitInterest' + selection
 	        		});
+	        		go.css({
+						'color': '#44FF44',
+						'font-style': 'bold',
+						'background-color': '#FFFFFF',
+						'width': '30px'
+	        		})
 	        		selector.append(go);
 	        		go.css({
 	        			top: '45%',
