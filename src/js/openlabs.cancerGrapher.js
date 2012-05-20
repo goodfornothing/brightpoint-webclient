@@ -10,7 +10,7 @@
       
 	        var defaults = {
 	            dataUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/next.json',
-	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/1/classifications.json',
+	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/1/classifications/new.json',
 	            name: 'chart',
 	            axis: true,
 	            topgutter: 30,

@@ -87,8 +87,13 @@ table {
 
 /* END reset min stuff */
 
+html,
 body{
-  background-color: #FFEEEE;
+
+}
+
+body{
+  background-image: url('../img/background.jpg');
   font-family: "Nokia Pure Text";
 }
 
@@ -122,7 +127,7 @@ footer{
 }
 
 header, footer{
-  background-color: #FF4444;
+  background-color: #AAAAAA;
   color: #FFEEEE;
 }
 
