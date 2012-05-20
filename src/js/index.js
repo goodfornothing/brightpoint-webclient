@@ -1,5 +1,5 @@
 $(function() {
     $('document').ready(function(){
-    	$('#chart').cancerGrapher({axis: false});
+    	$('#chart').cancerGrapher({axis: true});
     });
 });
