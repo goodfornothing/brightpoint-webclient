@@ -10,7 +10,7 @@
       
 	        var defaults = {
 	            dataUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/next.json',
-	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/classifications/new.json',
+	            sumbitUrl: 'http://brightpoint.herokuapp.com/api/v1/subjects/1/classifications.json',
 	            name: 'chart',
 	            axis: true,
 	            topgutter: 30,
@@ -178,25 +178,30 @@
 	        }
 
 	        var submitFinal = function(){
-	        	var data = {
-    				subject_id: subject_id,
-				    started: start_point,
-				    ended: end_point,
-				    annotations: annotations
-				};
-	        	console.log(data);
+	        	console.log(annotations);
+	        	$(plugin.settings.button).hide();
+				var queryString = 
+					'subject_id='+subject_id+'&'+
+					'started='+start_point+'&'+
+					'ended='+end_point+'&';
+				$.each(annotations, function(i, annotation){
+					queryString += 'annotations[]={start:'+annotation.start+', end:'+annotation.end+'}&';
+				});
+
+	        	console.log(queryString);
 				$.ajax({
         			url: plugin.settings.sumbitUrl,
-        			dataType: 'json',
     				crossDomain: true,
-    				contentType: "application/json; charset=utf-8",
         			type: 'POST',
-        			data: JSON.stringify(data),
+        			dataType: 'jsonp',
+        			data: queryString,
         			success: function(responseData, textStatus, jqXHR){
         				console.log('success');
+	        			$(plugin.settings.button).show();
         			},
         			error: function(responseData, textStatus, errorThrown){
         				console.log('error');
+	        			$(plugin.settings.button).show();
 
         			}
         		});

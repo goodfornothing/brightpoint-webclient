@@ -218,10 +218,16 @@ div.selector{
   overflow: scroll;
 }
 
+img.logo{
+  max-height: 100px;
+  display: inline;
 
+}
 
-
-
+header h1,
+footer h1{
+  float:left;
+}
 
 
 
