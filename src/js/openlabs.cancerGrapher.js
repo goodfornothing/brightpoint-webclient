@@ -17,7 +17,7 @@
 	            rightgutter: 0,
 	            bottomgutter: 30,
 	            leftgutter: 100,
-	            height: 360,
+	            height: 330,
 	            width: 2100,
 	            spotColor: '#443333',
 	            xAxisPoints: 20,

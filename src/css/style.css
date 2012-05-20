@@ -142,7 +142,7 @@ nav a{
   width: 33%;
   text-align: center;
   font-size: 1.5em;
-  color: #FFDDDD;
+  color: #444444;
 }
 
 #chromosomeGraph{
@@ -151,7 +151,7 @@ nav a{
 
 
 a{
-  color: #FF3333;
+  color: #333333;
   text-decoration:none;
   text-transform: uppercase;
 }
@@ -194,13 +194,13 @@ aside.beta{
   right: 0;
   top: 50%;
   width:3em;
-  background-color: #FF4444;
+  background-color: #444444;
   padding: 1em;
 }
 
 div.selector{
   height: 100%;
-  background-color: #663333;
+  background-color: #333333;
   position: absolute;
   opacity: 0.5;
   border: 1px dashed #999;
@@ -215,7 +215,7 @@ div.selector{
   -webkit-border-radius:  0.5em;
   -moz-border-radius:  0.5em;
   border-radius:  0.5em;
-  background-color: #CCAAAA;
+  background-color: #AAAAAA;
 }
 
 #chart{
@@ -224,9 +224,9 @@ div.selector{
 }
 
 img.logo{
-  max-height: 100px;
+  padding: 1em;
+  max-height: 6em;
   display: inline;
-
 }
 
 header h1,
@@ -234,8 +234,16 @@ footer h1{
   float:left;
 }
 
-
-
+#submitAnnotations{
+  display: block;
+  padding: 1em;
+  -webkit-border-radius:  0.5em;
+  -moz-border-radius:  0.5em;
+  border-radius:  0.5em;
+  background-color: #333333;
+  color: #DDD;
+  width: 4em;
+}
 
 
 
