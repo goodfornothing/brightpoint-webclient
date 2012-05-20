@@ -182,8 +182,7 @@ aside.beta{
 }
 
 div.selector{
-  height: 100px;
-  width: 100px;
+  height: 100%;
   background-color: #663333;
   position: absolute;
   opacity: 0.5;
