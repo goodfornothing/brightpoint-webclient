@@ -86,6 +86,16 @@
 			    	var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
 			    	r.circle(x, y, 2).attr({stroke: "none", fill: plugin.settings.spotColor, opacity: 1});;
 			    });
+	            plugin.settings = $.extend(plugin.settings, {
+	            	minX: minX,
+	            	minY: minY,
+	            	maxX: maxX,
+	            	maxX: maxX,
+	            	deltaX: deltaX,
+	            	deltaY: deltaY,
+	            	contentWidth: contentWidth,
+	            	contentHeight: contentHeight
+	            });
 			    $(plugin).find('svg').click(graphEvent());
 
 	        }
@@ -94,15 +104,13 @@
 
 	        var graphEvent = function(){
 	        	return function(e){
-	        		console.log(e.offsetX, e.offsetY);
 	        		var selector = $('<div/>', {
 	        			'class': 'selector',
 	        			'id': 'selector' + selection
 	        		});
-	        		console.log(selector);
 	        		$(plugin).append(selector);
 	        		selector.css({
-	        			'left': e.offsetX - 11,
+	        			'left': e.offsetX - 6,
 	        			'height': '100%',
 	        			'width': '22px'
 	        		});
@@ -114,7 +122,7 @@
 	        		});
 	        		selector.on('dblclick', function(e){
 	        			selector.hide();
-	        		})
+	        		});
 	        		var go = $('<div>GO</div>', {
 	        			'class': 'sumbitInterest',
 	        			'id': 'sumbitInterest' + selection
@@ -123,12 +131,28 @@
 	        		go.css({
 	        			top: '45%',
 	        			position: 'absolute'
-	        		})
-	        		go.on('click', function(e){
-	        			//TODO submit to server the interest
-	        			selector.hide();
-	        		})
+	        		});
+	        		go.on('dblclick', sumbitInterestEvent(selector, go));
 	        		selection++;
+	        	}
+	        }
+
+	        var sumbitInterestEvent = function(selector, go){
+	        	return function(e){
+	        		var position = selector.position(), xEl = position.left, yEl = position.y;
+	        		console.log(plugin.settings.leftgutter);
+	        		console.log(plugin.settings.contentWidth);
+	        		console.log(plugin.settings.minX);
+	        		console.log(xEl);
+			    	// var x = plugin.settings.leftgutter +((pointX - minX) / (maxX - minX) * contentWidth);
+			    	// var x - plugin.settings.leftgutter = (pointX - minX) / (maxX - minX) * contentWidth;
+			    	// var (x - plugin.settings.leftgutter) / contentWidth = (pointX - minX) / (maxX - minX);
+			    	// var ((x - plugin.settings.leftgutter) / contentWidth) * (maxX - minX) = (pointX - minX);
+			    	// var (((x - plugin.settings.leftgutter) / contentWidth) * (maxX - minX)) + minX = pointX;
+			    	var pointX = (((xEl - plugin.settings.leftgutter) / plugin.settings.contentWidth) * (plugin.settings.maxX - plugin.settings.minX)) + plugin.settings.minX;
+			    	// var y = plugin.settings.topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
+			    	console.log(pointX);
+	        		selector.hide();
 	        	}
 	        }
 
