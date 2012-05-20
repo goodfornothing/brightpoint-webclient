@@ -18,7 +18,9 @@
 	            leftgutter: 100,
 	            height: 360,
 	            width: 2100,
-	            spotColor: '#443333'
+	            spotColor: '#443333',
+	            xAxisPoints: 20,
+	            yAxisPoints: 20
 	        }
 
 	        var plugin = this;
@@ -70,14 +72,14 @@
 			        contentHeight = plugin.settings.height - plugin.settings.topgutter - plugin.settings.bottomgutter;
 			        r = Raphael(plugin.settings.name, plugin.settings.width, plugin.settings.height),
 			        txt = {"font": 'Nokia Pure Text, Arial', stroke: "none", fill: "#f22"},
-			        deltaX = (maxX - minX) / 10,
-			        deltaY = (maxY - minY) / 20;
+			        deltaX = (maxX - minX) / plugin.settings.xAxisPoints,
+			        deltaY = (maxY - minY) / plugin.settings.yAxisPoints;
 			    if(plugin.settings.axis){
-				    for (var y = 0; y <= 20; y++ ) {
-				        r.text(25, plugin.settings.topgutter + (y * (contentHeight) / 21), roundNumber((((y * deltaY) - maxY) * -1), 4 ) ).attr(txt);
+				    for (var y = 0; y <= plugin.settings.yAxisPoints; y++ ) {
+				        r.text(25, plugin.settings.topgutter + (y * (contentHeight) / (plugin.settings.yAxisPoints + 1)), roundNumber((((y * deltaY) - maxY) * -1), 4 ) ).attr(txt);
 				    }
-				    for (var x = 0; x <= 10; x++ ) {
-				        r.text( plugin.settings.leftgutter + (x * contentWidth / 11), plugin.settings.height - 10, Math.round((x * deltaX) + minX)).attr(txt);
+				    for (var x = 0; x <= plugin.settings.xAxisPoints; x++ ) {
+				        r.text( plugin.settings.leftgutter + (x * contentWidth / (plugin.settings.xAxisPoints + 1)), plugin.settings.height - 10, Math.round((x * deltaX) + minX)).attr(txt);
 				    }
 				}
 			    $.each(chromosome.data_points, function(i, item){
