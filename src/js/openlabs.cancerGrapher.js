@@ -39,6 +39,7 @@
 	            // code goes here
 
 	        }
+
 	        var plotGraph = function(chromosome) {
 				var axisx = [],
 			        axisy = [],
@@ -51,7 +52,6 @@
 					if(x > maxX) maxX = x;
 					if(x < minX) minX = x;
 			    });
-			    // console.log();
 			    // Draw
 			    var width = 2100,
 			        height = 360,
@@ -77,7 +77,28 @@
 			    	var y = topgutter + (maxY - item.y) / (maxY - minY) * contentHeight;
 			    	r.circle(x, y, 2).attr({stroke: "none", fill: "#000", opacity: 1});;
 			    });
+			    $(plugin).find('svg').click(graphEvent());
 
+	        }
+
+	        var selection = 0;
+
+	        var graphEvent = function(){
+	        	return function(e){
+	        		console.log(e.offsetX, e.offsetY);
+	        		var selector = $('<div/>', {
+	        			'class': 'selector',
+	        			'id': 'selector' + selection
+	        		});
+	        		selector.resizable();
+	        		selector.draggable();
+	        		console.log(selector);
+	        		$(plugin).append(selector);
+	        		selection++;
+	        		selector.on('dblclick', function(e){
+	        			selector.hide();
+	        		})
+	        	}
 	        }
 
 	        var roundNumber = function (num, dec) {

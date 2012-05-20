@@ -175,3 +175,28 @@ aside.beta{
   width:3em;
   background-color: #FF4444;
 }
+
+div.selector{
+  height: 40px;
+  width: 50px;
+  background-color: #663333;
+  position: absolute;
+  opacity: 0.5;
+  border: 1px dashed #999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
