@@ -167,3 +167,11 @@ section.content footer ul li{
   width: 33%;
   text-align: center;
 }
+
+aside.beta{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width:3em;
+  background-color: #FF4444;
+}

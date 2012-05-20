@@ -29,6 +29,10 @@
 			    	success: function(data){
 			    		chromosomeSection.setData(data[0]);
 			    		plotGraph(chromosomeSection.getData());
+			    	},
+			    	error: function(){
+			    		console.log('failed');
+			    		plotGraph(chromosomeSection.getData());
 			    	}
 			    });
 
@@ -39,7 +43,7 @@
 				var axisx = [],
 			        axisy = [],
 			        maxY = 0, minY = 0,
-			        maxX = 0, minX = 0;
+			        maxX = 0, minX = 9999999;
 			    $.each(chromosome.data_points, function(i, item){
 					if(item.y > maxY) maxY = item.y;
 					if(item.y < minY) minY = item.y;
@@ -47,6 +51,7 @@
 					if(x > maxX) maxX = x;
 					if(x < minX) minX = x;
 			    });
+			    // console.log();
 			    // Draw
 			    var width = 2100,
 			        height = 360,
